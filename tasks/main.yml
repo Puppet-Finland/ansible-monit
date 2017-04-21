@@ -1,0 +1,19 @@
+- name: ensure monit is installed
+  package:
+    name=monit
+    state=present
+- name: ensure monit config is present
+  template:
+    src=templates/monitrc.j2
+    dest=/etc/monit/monitrc
+    owner=root
+    group=root
+    mode=0600
+  notify:
+    - restart monit
+- name: ensure monit is running
+  service:
+    name=monit
+    enabled=yes
+    state=started
+
