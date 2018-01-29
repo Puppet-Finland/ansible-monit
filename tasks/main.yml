@@ -11,6 +11,7 @@
     mode=0600
   notify:
     - restart monit
+  when: monit_manage_config == true
 - name: ensure monit is running
   service:
     name=monit
